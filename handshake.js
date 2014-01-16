@@ -213,7 +213,7 @@ function morse(text)	// Vibrate morse code based on the supplied text
 			});
 		}
 		
-		//Make sure we don't go over the limit of 128 characters
+		//Make sure we don't go over the limit of 128 items in the pattern
 		if ((letterPattern.length + pattern.length) > 128) {
 			break;
 		}
