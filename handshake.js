@@ -202,15 +202,26 @@ function morse(text)	// Vibrate morse code based on the supplied text
 	var pattern = [];
 	for(var i=0; i< text.length; i++) {
 		var letterVibe = morseLetters[text.charAt(i).toString().toUpperCase()];
+		var letterPattern = [];
 		if (text.charAt(i) === ' ') {
-			pattern.push(0);
-			pattern.push(space);
+			letterPattern.push(0);
+			letterPattern.push(space);
 		} else if (letterVibe !== undefined) {
 			letterVibe.forEach(function(vibe) {
-				pattern.push(vibe);
-				pattern.push(gap);
+				letterPattern.push(vibe);
+				letterPattern.push(gap);
 			});
 		}
+		
+		//Make sure we don't go over the limit of 128 items in the pattern
+		if ((letterPattern.length + pattern.length) > 128) {
+			break;
+		}
+		
+		//Add letter pattern to main pattern
+		letterPattern.forEach(function(letterPatternItem){
+			pattern.push(letterPatternItem);
+		});
 	}
 	
 	//Vibrate the pattern
