@@ -213,8 +213,6 @@ function morse(text)	// Vibrate morse code based on the supplied text
 		}
 	}
 	
-	console.log(pattern);
-	
 	//Vibrate the pattern
 	navigator.vibrate(pattern);
 
