@@ -22,3 +22,4 @@ The vibrate API works by defining how long the phone or tablet's vibration motor
 `navigator.vibrate([200, 100, 500]);` means vibrate for 200ms, pause for 100ms, vibrate for 500ms.
 
 
+Read our blog post about Handshake https://thelab.o2.com/2014/01/introducing-handshake-a-haptic-effects-library/
