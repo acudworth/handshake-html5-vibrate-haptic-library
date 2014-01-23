@@ -12,6 +12,7 @@ Currently, it works on
 - Firefox for Android
 - Chrome (beta) for Android
 - Firefox Mobile
+- BlackBerry 10
  
 Other browsers will come in time :-)
 
