@@ -17,9 +17,9 @@
 */
 
 //	Set up the HTML5 Vibrate API using vendor prefixes
-navigator.vibrate = navigator.vibrate ||
+var vibrator = navigator.vibrate ||
 					navigator.webkitVibrate ||
-					navigator.mozVibrate || 
+					navigator.mozVibrate ||
 					navigator.msVibrate;
 
 //	A variety of vibration patterns
@@ -29,9 +29,9 @@ function sms() 	//	Vibrate with the old style Nokia pattern; ...--... (Morse cod
 	pause = 100;
 	dot   = pause*2;
 	dash  = dot*3;
-	navigator.vibrate([dot, pause, dot, pause, dot, 
-		               pause*2, dash, pause, dash, 
-		               pause*2, dot, pause, dot, pause, dot]);	
+	vibrator([dot, pause, dot, pause, dot,
+		               pause*2, dash, pause, dash,
+		               pause*2, dot, pause, dot, pause, dot]);
 }
 
 function heartBeat(repeat, speed)	//	Simulate a beating heart
@@ -42,7 +42,7 @@ function heartBeat(repeat, speed)	//	Simulate a beating heart
 
 	//	Create the array of vibration patterns
 	var pattern = [];
-	
+
 	//	Fill the array the specified number of times
 	for (var i = 0; i < repeat ; i++)
 	{
@@ -55,14 +55,14 @@ function heartBeat(repeat, speed)	//	Simulate a beating heart
 		pattern.push(10);
 		pattern.push(speed);
 	}
-	
+
 	//	Start vibrating
-	navigator.vibrate(pattern);	
+	vibrator(pattern);
 }
 
 function clunkClick()	//	Suitable for an "error" vibration.
 {
-	navigator.vibrate([40,80, 100]);	
+	vibrator([40,80, 100]);
 }
 
 function lite(repeat)	//	A gentle vibration. We cannot set the intensity, this is a good compromise.
@@ -72,16 +72,16 @@ function lite(repeat)	//	A gentle vibration. We cannot set the intensity, this i
 
 	//	Create the array of vibration patterns
 	var pattern = [];
-	
+
 	//	Fill the array the specified number of times
 	for (var i = 0; i < repeat; i++)
 	{
 		pattern.push(5);
 		pattern.push(10);
 	}
-	
+
 	//	Start vibrating
-	navigator.vibrate(pattern);
+	vibrator(pattern);
 }
 
 function medium(repeat)	//	A medium vibration. We cannot set the intensity, this is a good compromise.
@@ -91,27 +91,27 @@ function medium(repeat)	//	A medium vibration. We cannot set the intensity, this
 
 	//	Create the array of vibration patterns
 	var pattern = [];
-	
+
 	//	Fill the array the specified number of times
 	for (var i = 0; i < repeat; i++)
 	{
 		pattern.push(50);
 		pattern.push(10);
 	}
-	
+
 	//	Start vibrating
-	navigator.vibrate(pattern);
+	vibrator(pattern);
 }
 
 function shaveAndAHairCut()	//	The popular tapping rhythm
 {
 	//                 Shave   &       a       hair    cut     two     bits!
-	navigator.vibrate([100,200,100,100,100,100,200,200,100,600,200,225,200]);
+	vibrator([100,200,100,100,100,100,200,200,100,600,200,225,200]);
 }
 
 function starWars()	//	Imperial March (Darth Vader's Theme) by John Williams
 {
-	navigator.vibrate([500,110,500,110,450,110,200,110,170,40,450,110,200,110,170,40,500]);
+	vibrator([500,110,500,110,450,110,200,110,170,40,450,110,200,110,170,40,500]);
 }
 
 function waiting(repeat)	//	Suitable for indicating that the device is waiting.
@@ -121,7 +121,7 @@ function waiting(repeat)	//	Suitable for indicating that the device is waiting.
 
 	//	Create the array of vibration patterns
 	var pattern = [];
-	
+
 	//	Fill the array the specified number of times
 	for (var i = 0; i < repeat; i++)
 	{
@@ -129,15 +129,15 @@ function waiting(repeat)	//	Suitable for indicating that the device is waiting.
 		pattern.push(50); pattern.push(100);
 		pattern.push(50); pattern.push(1000);
 	}
-	
+
 	//	Start vibrating
-	navigator.vibrate(pattern);
+	vibrator(pattern);
 }
 
 function countdown()	//	A 3 second countdown timer, suitable for a racing game.
 {
 	//                 3       2       1       Go!
-	navigator.vibrate([300,700,300,700,300,700,1000]);
+	vibrator([300,700,300,700,300,700,1000]);
 }
 
 function morse(text)	// Vibrate morse code based on the supplied text
@@ -147,7 +147,7 @@ function morse(text)	// Vibrate morse code based on the supplied text
 	var dash = 300;
 	var gap = 100;
 	var space = 300;
-	
+
 	//	The patters for each letter of the alphabet, numbers and some punctuation
 	var morseLetters = {
 		"A": [dot, dash],
@@ -186,18 +186,18 @@ function morse(text)	// Vibrate morse code based on the supplied text
 		"7": [dash, dash, dot, dot, dot],
 		"8": [dash, dash, dash, dot, dot],
 		"9": [dash, dash, dash, dash, dot],
-		".": [dot, dash, dot, dash, dot, dash], 
+		".": [dot, dash, dot, dash, dot, dash],
 		",": [dash, dash, dot, dot, dash, dash],
 		":": [dash, dash, dash, dot, dot, dot],
 		"?": [dot, dot, dash, dash, dot, dot],
 		"'": [dot, dash, dash, dash, dash, dot],
-		"-": [dash, dot, dot, dot, dot, dash], 
+		"-": [dash, dot, dot, dot, dot, dash],
 		"/": [dash, dot, dot, dash, dot],
 		"(": [dash, dot, dash, dash, dot, dash],
 		")": [dash, dot, dash, dash, dot, dash],
 		"\"": [dot, dash, dot, dot, dash, dot]
 	};
-	
+
 	//Loop through each letter
 	var pattern = [];
 	for(var i=0; i< text.length; i++) {
@@ -212,19 +212,19 @@ function morse(text)	// Vibrate morse code based on the supplied text
 				letterPattern.push(gap);
 			});
 		}
-		
+
 		//Make sure we don't go over the limit of 128 items in the pattern
 		if ((letterPattern.length + pattern.length) > 128) {
 			break;
 		}
-		
+
 		//Add letter pattern to main pattern
 		letterPattern.forEach(function(letterPatternItem){
 			pattern.push(letterPatternItem);
 		});
 	}
-	
+
 	//Vibrate the pattern
-	navigator.vibrate(pattern);
+	vibrator(pattern);
 
 }
