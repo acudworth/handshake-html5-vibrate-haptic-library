@@ -17,10 +17,11 @@
 */
 
 //	Set up the HTML5 Vibrate API using vendor prefixes
-var vibrator = navigator.vibrate ||
-					navigator.webkitVibrate ||
-					navigator.mozVibrate ||
-					navigator.msVibrate;
+
+var vibrator = 	navigator.vibrate.bind(navigator) ||
+				navigator.webkitVibrate.bind(navigator) ||
+				navigator.mozVibrate.bind(navigator) ||
+				navigator.msVibrate.bind(navigator);
 
 //	A variety of vibration patterns
 
