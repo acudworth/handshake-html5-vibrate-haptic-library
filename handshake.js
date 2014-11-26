@@ -234,3 +234,21 @@ function smoothCriminal()
 {
 	vibrator([0,300,100,50,100,50,100,50,100,50,100,50,100,50,150,150,150,450,100,50,100,50,150,150,150,450,100,50,100,50,150,150,150,450,150,150]);
 }
+
+function telephone(repeat)
+{
+	repeat = repeat || 3 // ring 3 times by default
+	
+	var pattern = [];
+	
+	for (var i=0; i < repeat; i++) {
+		
+		pattern.push(550);
+		pattern.push(100);
+		pattern.push(550);
+		pattern.push(1600);
+		
+	}
+	
+	vibrator(pattern);
+}
