@@ -229,3 +229,8 @@ function morse(text)	// Vibrate morse code based on the supplied text
 	vibrator(pattern);
 
 }
+
+function smoothCriminal()
+{
+	vibrator([0,300,100,50,100,50,100,50,100,50,100,50,100,50,150,150,150,450,100,50,100,50,150,150,150,450,100,50,100,50,150,150,150,450,150,150]);
+}
