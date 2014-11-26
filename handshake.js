@@ -252,3 +252,26 @@ function telephone(repeat)
 	
 	vibrator(pattern);
 }
+
+function shortAndSharp(repeat)
+{
+	repeat = repeat || 1
+	
+	var pattern = [];
+	
+	for (var i=0; i < repeat; i++) {
+		
+		pattern.push(50);
+		pattern.push(100);
+		pattern.push(300);
+		pattern.push(75);
+		pattern.push(50);
+		pattern.push(75);
+		pattern.push(50);
+		pattern.push(1000);
+		
+	}
+	
+	vibrator(pattern);
+	
+}
